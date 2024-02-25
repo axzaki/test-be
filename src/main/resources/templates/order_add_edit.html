@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Java BE Test</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <br>
+    <h3>[[${pageTitle}]]</h3>
+    <br>
+    <div class="form col-8">
+        <form th:action="@{/order/save}" id="searchForm" method="post" enctype="multipart/form-data" th:object="${order}" style="max-width: 550px; margin: 0 auto">
+            <div th:if="${order.id != null && order.id != 0}">
+                <input id="id" type="hidden" name="id" th:value="${order.id}">
+            </div>
+
+            <label for="orderNo" class="form-label">Order NO</label>
+            <div class="input-group mb-3">
+                <input id="orderNo" type="text" name="orderNo" th:value="${order.orderNo}" required class="mandatory form-control" placeholder="Order No">
+            </div>
+
+            <label for="itemId" class="form-label">Item</label>
+            <div class="input-group mb-3">
+                <select required class="form-select mb-3" id="itemId" type="text" name="itemId" placeholder="Item">
+                    <option disabled th:selected="${order.itemId == null}">Choose Item</option>
+                    <option th:each="item : ${itemList}" th:value="${item.id}" th:text="${item.id} + ' - ' +  ${item.name}"
+                            th:selected="${item.id==order.itemId}"></option>
+                </select>
+            </div>
+
+            <label for="quantity" class="form-label">QTY</label>
+            <div class="input-group mb-3">
+                <input id="quantity" type="number" name="quantity" th:value="${order.quantity}" required class="number mandatory form-control" placeholder="Quantity">
+            </div>
+
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <a th:href="@{'/order/list?page=0&size=5'}"  class="btn btn-secondary " role="button" title="Back">Back</a>
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                 </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>

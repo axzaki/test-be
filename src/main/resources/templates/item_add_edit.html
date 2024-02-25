@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Java BE Test</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <br>
+    <h3>[[${pageTitle}]]</h3>
+    <br>
+    <div class="form col-8">
+        <form th:action="@{/item/save}" id="searchForm" method="post" enctype="multipart/form-data" th:object="${item}" style="max-width: 550px; margin: 0 auto">
+
+            <div th:if="${item.id != null && item.id != 0}">
+                <label for="name" class="form-label">ID</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" th:text="${item.id}">Id</span>
+                    <input id="id" type="hidden" name="id" th:value="${item.id}">
+                </div>
+            </div>
+
+            <label for="name" class="form-label">Name</label>
+            <div class="input-group mb-3">
+                <input id="name" type="text" name="name" th:value="${item.name}" required class="mandatory form-control" placeholder="Name">
+            </div>
+
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group mb-3">
+                <input id="price" type="number" name="price" th:value="${item.price}" required class="number mandatory form-control" placeholder="Price">
+            </div>
+
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <a th:href="@{'/item/list?page=0&size=5'}"  class="btn btn-secondary " role="button" title="Back">Back</a>
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                 </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>

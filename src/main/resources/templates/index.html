@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Java BE Test</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <br>
+    <h2 th:text="${message}">Test!</h2>
+    <br>
+    <div class="d-grid gap-2 col-3">
+        <a class="btn btn-outline-primary btn-lg" href="item/list?page=0&size=5" role="button">Item</a>
+        <a class="btn btn-outline-success btn-lg" href="order/list?page=0&size=5" role="button">Order</a>
+    </div>
+    <br>
+</div>
+
+
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

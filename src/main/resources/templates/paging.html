@@ -1,0 +1,22 @@
+<div th:fragment="paging">
+<nav aria-label="Page navigation" class="paging">
+    <ul class="pagination justify-content-end" th:if="${paging.totalPages > 1}">
+        <li class="page-item" th:classappend="${paging.number == 0} ? 'disabled'">
+            <a class="page-link" th:href="@{'list?page=0' + '&size='+ ${paging.size}}" ><<</a>
+        </li>
+        <li class="page-item font-weight-bold" th:classappend="${paging.number == 0} ? 'disabled'">
+            <a class="page-link" th:href="@{'list?page=' + ${paging.number - 1} + '&size='+ ${paging.size}}" >Previous</a>
+        </li>
+        <li class="page-item" th:classappend="${page == paging.number} ? 'active'"
+            th:each="page : ${#numbers.sequence(paging.number > 1 ? paging.number - 1 : 0, paging.number + 1 < paging.totalPages-1 ? paging.number + 1 : paging.totalPages-1)}">
+            <a class="page-link" th:href="@{'list?page=' + ${page} + '&size='+ ${paging.size}}" th:text="${page+1}"></a>
+        </li>
+        <li class="page-item font-weight-bold" th:classappend="${paging.number == paging.totalPages-1} ? 'disabled'">
+            <a class="page-link" th:href="@{'list?page=' + ${paging.number + 1} + '&size='+ ${paging.size}}" >Next</a>
+        </li>
+        <li class="page-item" th:classappend="${paging.number == paging.totalPages-1} ? 'disabled'">
+            <a class="page-link" th:href="@{'list?page=' + ${paging.totalPages-1} + '&size='+ ${paging.size}}" >>></a>
+        </li>
+    </ul>
+</nav>
+</div>
